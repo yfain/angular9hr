@@ -1,26 +1,36 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
-import {ProductDetailComponent} from "./product.detail.component";
-import {HomeComponent} from "./home.component";
-import {routing} from "./app.routing";
-import {ProductDescriptionComponent} from "./product.description.component";
-import {SellerInfoComponent} from "./seller.info.component";
-import {RouterModule} from "@angular/router";
+import { routing } from './app.routing';
+import { HomeComponent } from './home.component';
+import { ProductDescriptionComponent } from './product.description.component';
+import { ProductDetailComponent } from './product.detail.component';
+import { SellerInfoComponent } from './seller.info.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent, HomeComponent, ProductDetailComponent,
-    ProductDescriptionComponent, SellerInfoComponent // used in child routes
-  ],
   imports: [
     BrowserModule,
-    RouterModule, routing
+    RouterModule,
+    routing
   ],
-  providers:[{provide: LocationStrategy, useClass: HashLocationStrategy}],
-  bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ProductDetailComponent,
+    ProductDescriptionComponent, // used in child routes
+    SellerInfoComponent          // used in child routes
+  ],
+  providers:[
+    {
+      provide: LocationStrategy, useClass: HashLocationStrategy
+    }
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
-export class AppModule { }
+export class AppModule {}
